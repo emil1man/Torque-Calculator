@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torque Calculator — Скоро запуск</title>
+    <!-- Подключение шрифта Roboto и иконок Material Icons -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <style>
+        /* Переменные цвета Material Design 3 (Dynamic Color Tokens) */
+        :root {
+            --md-sys-color-background: #fef7ff;
+            --md-sys-color-on-background: #1d1b20;
+            --md-sys-color-surface: #f7f2fa;
+            --md-sys-color-surface-variant: #e7e0ec;
+            --md-sys-color-on-surface-variant: #49454f;
+            --md-sys-color-primary: #6750a4;
+            --md-sys-color-on-primary: #ffffff;
+            --md-sys-color-outline: #79747e;
+            
+            /* Эффекты теней (Elevation) */
+            --md-elevation-1: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+            --md-elevation-2: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--md-sys-color-background);
+            color: var(--md-sys-color-on-background);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 16px;
+        }
+
+        /* Карточка в стиле Material M3 Elevate Card */
+        .card {
+            background-color: var(--md-sys-color-surface);
+            border-radius: 12px; /* По стандарту M3 */
+            padding: 32px 24px;
+            max-width: 440px;
+            width: 100%;
+            text-align: center;
+            box-shadow: var(--md-elevation-1);
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: var(--md-elevation-2);
+        }
+
+        /* Главная иконка */
+        .brand-icon {
+            font-size: 48px;
+            color: var(--md-sys-color-primary);
+            margin-bottom: 16px;
+        }
+
+        /* Типографика */
+        h1 {
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            letter-spacing: 0px;
+        }
+
+        p {
+            font-size: 16px;
+            color: var(--md-sys-color-on-surface-variant);
+            line-height: 24px;
+            margin-bottom: 24px;
+        }
+
+        /* Декоративный статус-бар */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--md-sys-color-surface-variant);
+            color: var(--md-sys-color-on-surface-variant);
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 32px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #b3261e; /* MD3 Error Color для индикации ожидания */
+            border-radius: 50%;
+            animation: blink 1.5s infinite ease-in-out;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        /* Кнопка Доната (Material Filled Button) */
+        .btn-donate {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            border: none;
+            padding: 0 24px;
+            height: 40px;
+            border-radius: 20px; /* Полностью круглая кнопка по M3 */
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: var(--md-elevation-1);
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-donate:hover {
+            background-color: #553f8a; /* Затемнение при наведении */
+            box-shadow: var(--md-elevation-2);
+        }
+
+        .btn-donate:active {
+            background-color: #433070;
+        }
+
+        .btn-donate .material-icons {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Иконка шестеренки/инструмента -->
+        <span class="material-icons brand-icon">settings_suggest</span>
+        
+        <h1>Torque Calculator</h1>
+        
+        <p>Удобный калькулятор параметров находится в процессе разработки. Совсем скоро страница обновится, и все функции станут доступны.</p>
+        
+        <div class="status-badge">
+            <span class="status-dot"></span>
+            Проект разрабатывается
+        </div>
+
+        <div>
+            <!-- Замените '#' на вашу ссылку (Ko-fi, ЮMoney, Бусти и т.д.) -->
+            <a href="#" class="btn-donate" target="_blank">
+                <span class="material-icons">favorite</span>
+                Поддержать автора
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
