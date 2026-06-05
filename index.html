@@ -4,102 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Torque Calculator — Скоро запуск</title>
+    <meta name="description" content="Torque Calculator — калькулятор рекомендуемых характеристик двигателя для игры Sprocket. Подберите крутящий момент и рабочий объём под массу танка и эпоху.">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Google Fonts async pattern -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preload" href="https://fonts.gstatic.com/s/materialicons/v145/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" as="style" onload="this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
+
+    <link href="assets/css/shared.css" rel="stylesheet">
+</head>
+<body class="page-centered">
+
+    <main>
+        <div class="card">
+            <span class="material-icons brand-icon">settings_suggest</span>
+
+            <h1>Torque Calculator</h1>
+            <p>Калькулятор рекомендуемых значений двигателя для игры Sprocket.</p>
+
+            <div class="status-badge">
+                <span class="status-dot" style="width:8px;height:8px;background-color:#b3261e;border-radius:50%;display:inline-block;animation:blink 1.5s infinite ease-in-out;"></span>
+                Проект разрабатывается
+            </div>
+
+            <div class="button-container">
+                <a href="/" class="btn btn--primary">
+                    <span class="icon-chip material-icons" aria-hidden="true">home</span>
+                    Главная страница
+                </a>
+                <a href="/data/lookups/index.html" class="btn btn--tonal">
+                    <span class="icon-chip material-icons" aria-hidden="true">analytics</span>
+                    Характеристики эпох
+                </a>
+                <a href="/data/calculator/index.html" class="btn btn--tonal">
+                    <span class="icon-chip material-icons" aria-hidden="true">calculate</span>
+                    Калькулятор двигателя
+                </a>
+                <a href="https://store.steampowered.com/app/1674170/Sprocket/" class="btn btn--steam" target="_blank" rel="noopener">
+                    <span class="icon-chip"><span class="ico-steam" aria-hidden="true"></span></span>
+                    Открыть игру в Steam
+                </a>
+
+                <a href="https://www.donationalerts.com/r/emil1man" class="btn btn--donate" target="_blank" rel="noopener">
+                    <span class="icon-chip material-icons" aria-hidden="true">favorite</span>
+                    Поддержать автора
+                </a>
+                <button id="themeToggle" class="btn btn--tonal theme-btn-nav">
+                    <span class="material-icons" id="themeIcon">dark_mode</span>
+                </button>
+            </div>
+        </div>
+    </main>
 
     <style>
-        /* Переменные цвета Material Design 3 */
-        :root {
-            --md-sys-color-background: #fef7ff;
-            --md-sys-color-on-background: #1d1b20;
-            --md-sys-color-surface: #f7f2fa;
-            --md-sys-color-surface-variant: #e7e0ec;
-            --md-sys-color-on-surface-variant: #49454f;
-            --md-sys-color-primary: #6750a4;
-            --md-sys-color-on-primary: #ffffff;
-            --md-sys-color-outline: #79747e;
-            /* Эффекты теней (Elevation) */
-            --md-elevation-1: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
-            --md-elevation-2: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--md-sys-color-background);
-            color: var(--md-sys-color-on-background);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 16px;
-        }
-
-        .card {
-            background-color: var(--md-sys-color-surface);
-            border-radius: 12px;
-            padding: 32px 24px;
-            max-width: 440px;
-            width: 100%;
-            text-align: center;
-            box-shadow: var(--md-elevation-1);
-            transition: box-shadow 0.2s ease;
-        }
-
-            .card:hover {
-                box-shadow: var(--md-elevation-2);
-            }
-
-        .brand-icon {
-            font-size: 48px;
-            color: var(--md-sys-color-primary);
-            margin-bottom: 16px;
-        }
-
-        h1 {
-            font-size: 28px;
-            font-weight: 500;
-            margin-bottom: 12px;
-        }
-
-        p {
-            font-size: 16px;
-            color: var(--md-sys-color-on-surface-variant);
-            line-height: 24px;
-            margin-bottom: 24px;
-        }
-
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background-color: var(--md-sys-color-surface-variant);
-            color: var(--md-sys-color-on-surface-variant);
-            padding: 6px 16px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 24px;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #b3261e;
-            border-radius: 50%;
-            animation: blink 1.5s infinite ease-in-out;
-        }
-
+        /* Минимальные локальные стили для элементов, которые не вошли в shared.css (анимация статусной точки) */
         @keyframes blink {
-            0%, 100% {
+            0%,100% {
                 opacity: 0.4;
             }
 
@@ -107,123 +69,8 @@
                 opacity: 1;
             }
         }
-
-        .button-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            align-items: center;
-            width: 100%;
-        }
-
-        /* Общие базовые стили для кнопок */
-        .btn-material {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            height: 40px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 500;
-            text-decoration: none;
-            cursor: pointer;
-            box-shadow: var(--md-elevation-1);
-            transition: background-color 0.2s, box-shadow 0.2s, transform 0.1s;
-            width: 100%;
-            max-width: 280px;
-        }
-
-            .btn-material:hover {
-                box-shadow: var(--md-elevation-2);
-            }
-
-            .btn-material:active {
-                transform: scale(0.98);
-            }
-
-        /* Кнопка Характеристик (M3 Filled Button) */
-        .btn-specs {
-            background-color: var(--md-sys-color-primary);
-            color: var(--md-sys-color-on-primary);
-        }
-
-            .btn-specs:hover {
-                background-color: #553f8a; /* Слегка темнее при наведении */
-            }
-
-        /* Кнопка Steam */
-        .btn-steam {
-            background-color: #171a21;
-            color: #ffffff;
-        }
-
-            .btn-steam:hover {
-                background-color: #2a475e;
-            }
-
-        /* Кнопка Доната (M3 Filled Button) */
-        .btn-donate {
-            background-color: var(--md-sys-color-primary);
-            color: var(--md-sys-color-on-primary);
-        }
-
-            .btn-donate:hover {
-                background-color: #553f8a;
-            }
-
-        .btn-nav-tonal {
-            background-color: var(--md-sys-color-surface-variant);
-            color: var(--md-sys-color-primary);
-        }
-        /* Иконка Steam, спрятанная в CSS */
-        .ico-steam {
-            width: 24px;
-            height: 24px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            /* Твой SVG, переведенный в безопасный формат URL-encode */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23ffffff'/%3E%3Cpath d='M15.974 0c-8.401 0-15.292 6.479-15.943 14.714l8.573 3.547c0.729-.495 1.604-.786 2.552-.786.083 0 .167 0 .25 0l3.813-5.521v-.078c0-3.328 2.703-6.031 6.031-6.031s6.036 2.708 6.036 6.036c0 3.328-2.708 6.031-6.036 6.031h-.135l-5.438 3.88c0 .073 0 .141 0 .214 0 2.5-2.021 4.526-4.521 4.526-2.177 0-4.021-1.563-4.443-3.635l-6.135-2.542c1.901 6.719 8.063 11.641 15.391 11.641 8.833 0 15.995-7.161 15.995-16s-7.161-16-15.995-16zM10.052 24.281l-1.964-.813c.349.724.953 1.328 1.755 1.667 1.729.719 3.724-.104 4.443-1.833.349-.844.349-1.76 0-2.599-.344-.844-1-1.495-1.839-1.844-.828-.349-1.719-.333-2.5-.042l2.026.839c1.276.536 1.88 2 1.349 3.276s-2 1.88-3.276 1.349zM25.271 11.875c0-2.214-1.802-4.021-4.016-4.021-2.224 0-4.021 1.807-4.021 4.021 0 2.219 1.797 4.021 4.021 4.021 2.214 0 4.016-1.802 4.016-4.021zM18.245 11.87c0-1.672 1.349-3.021 3.016-3.021s3.026 1.349 3.026 3.021c0 1.667-1.359 3.021-3.026 3.021s-3.016-1.354-3.016-3.021z'/%3E%3C/svg%3E");
-        }
     </style>
-</head>
-<body>
 
-    <div class="card">
-        <span class="material-icons brand-icon">settings_suggest</span>
-
-        <h1>Torque Calculator</h1>
-        <p>Калькулятор рекомендуемых значений двигателя для игры Sprocket.</p>
-
-        <div class="status-badge">
-            <span class="status-dot"></span>
-            Проект разрабатывается
-        </div>
-
-        <div class="button-container">
-            <a href="/" class="btn-material btn-specs">
-                <span class="material-icons">home</span>
-                Главная страница
-            </a>
-            <a href="/data/lookups/index.html" class="btn-material btn-nav-tonal">
-                <span class="material-icons">analytics</span>
-                Характеристики эпох
-            </a>
-            <a href="/data/calculator/index.html" class="btn-material btn-nav-tonal">
-                <span class="material-icons">calculate</span>
-                Калькулятор двигателя
-            </a>
-            <a href="https://store.steampowered.com/app/1674170/Sprocket/" class="btn-material btn-steam" target="_blank">
-                <span class="ico-steam"></span>
-                Открыть игру в Steam
-            </a>
-
-            <a href="https://www.donationalerts.com/r/emil1man" class="btn-material btn-donate" target="_blank">
-                <span class="material-icons">favorite</span>
-                Поддержать автора
-            </a>
-        </div>
-    </div>
+    <script src="/assets/css/theme.js"></script>
 </body>
 </html>
