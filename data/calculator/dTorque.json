@@ -1,0 +1,50 @@
+{
+  "engine_note": "delta_torque (k) используется для вычисления Torque = n * V * k. hp_per_torque и base_hp используются для расчета мощности: HP = (Torque * hp_per_torque) + base_hp.",
+  "epochs": [
+    {
+      "id": "WW",
+      "label": "WW1 (Первая мировая)",
+      "min_cylinders": 2,
+      "max_cylinders": 6,
+      "delta_torque": 46.00,
+      "hp_per_torque": 0.2,
+      "base_hp": 2.0
+    },
+    {
+      "id": "IW",
+      "label": "Interwar (Межвоенный)",
+      "min_cylinders": 2,
+      "max_cylinders": 12,
+      "delta_torque": 66.33,
+      "hp_per_torque": 0.4,
+      "base_hp": 5.0
+    },
+    {
+      "id": "EW",
+      "label": "Earlywar (Ранняя ВМВ)",
+      "min_cylinders": 2,
+      "max_cylinders": 24,
+      "delta_torque": 69.41,
+      "hp_per_torque": 0.467,
+      "base_hp": 7.33
+    },
+    {
+      "id": "MW",
+      "label": "Midwar (Середина ВМВ)",
+      "min_cylinders": 2,
+      "max_cylinders": 24,
+      "delta_torque": 72.91,
+      "hp_per_torque": 0.567,
+      "base_hp": 9.33
+    },
+    {
+      "id": "LW",
+      "label": "Latewar (Конец ВМВ)",
+      "min_cylinders": 2,
+      "max_cylinders": 24,
+      "delta_torque": 74.16,
+      "hp_per_torque": 0.667,
+      "base_hp": 9.33
+    }
+  ]
+}
