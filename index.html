@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Torque Calculator — Скоро запуск</title>
+    <title data-i18n="page_title">Torque Calculator — Скоро запуск</title>
     <meta name="description" content="Torque Calculator — калькулятор рекомендуемых характеристик двигателя для игры Sprocket. Подберите крутящий момент и рабочий объём под массу танка и эпоху.">
 
-    <!-- Google Fonts async pattern -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.gstatic.com/s/materialicons/v145/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" as="style" onload="this.rel='stylesheet'">
@@ -21,36 +20,41 @@
         <div class="card">
             <span class="material-icons brand-icon">settings_suggest</span>
 
-            <h1>Torque Calculator</h1>
-            <p>Калькулятор рекомендуемых значений двигателя для игры Sprocket.</p>
+            <h1 data-i18n="main_h1">Torque Calculator</h1>
+            <p data-i18n="main_p">Калькулятор рекомендуемых значений двигателя для игры Sprocket.</p>
 
             <div class="status-badge">
                 <span class="status-dot" style="width:8px;height:8px;background-color:#b3261e;border-radius:50%;display:inline-block;animation:blink 1.5s infinite ease-in-out;"></span>
-                Проект разрабатывается
+                <span data-i18n="status_developing">Проект разрабатывается</span>
             </div>
 
             <div class="button-container">
                 <a href="/" class="btn btn--primary">
                     <span class="icon-chip material-icons" aria-hidden="true">home</span>
-                    Главная страница
+                    <span data-i18n="btn_home">Главная страница</span>
                 </a>
                 <a href="/data/lookups/index.html" class="btn btn--tonal">
                     <span class="icon-chip material-icons" aria-hidden="true">analytics</span>
-                    Характеристики эпох
+                    <span data-i18n="btn_lookups">Характеристики эпох</span>
                 </a>
                 <a href="/data/calculator/index.html" class="btn btn--tonal">
                     <span class="icon-chip material-icons" aria-hidden="true">calculate</span>
-                    Калькулятор двигателя
+                    <span data-i18n="btn_calculator">Калькулятор двигателя</span>
                 </a>
                 <a href="https://store.steampowered.com/app/1674170/Sprocket/" class="btn btn--steam" target="_blank" rel="noopener">
                     <span class="icon-chip"><span class="ico-steam" aria-hidden="true"></span></span>
-                    Открыть игру в Steam
+                    <span data-i18n="btn_steam">Открыть игру в Steam</span>
                 </a>
 
                 <a href="https://www.donationalerts.com/r/emil1man" class="btn btn--donate" target="_blank" rel="noopener">
                     <span class="icon-chip material-icons" aria-hidden="true">favorite</span>
-                    Поддержать автора
+                    <span data-i18n="btn_donate">Поддержать автора</span>
                 </a>
+
+                <div class="select-group lang-select-group">
+                    <select id="langSelect" onchange="changeLanguage(this.value)"></select>
+                </div>
+
                 <button id="themeToggle" class="btn btn--tonal theme-btn-nav">
                     <span class="material-icons" id="themeIcon">dark_mode</span>
                 </button>
@@ -59,7 +63,6 @@
     </main>
 
     <style>
-        /* Минимальные локальные стили для элементов, которые не вошли в shared.css (анимация статусной точки) */
         @keyframes blink {
             0%,100% {
                 opacity: 0.4;
@@ -72,5 +75,6 @@
     </style>
 
     <script src="/assets/css/theme.js"></script>
+    <script src="/assets/css/lang.js"></script>
 </body>
 </html>

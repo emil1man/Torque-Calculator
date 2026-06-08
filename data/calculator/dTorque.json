@@ -3,7 +3,7 @@
   "epochs": [
     {
       "id": "WW",
-      "label": "WW1 (Первая мировая)",
+      "label": "epoch_WW",
       "min_cylinders": 2,
       "max_cylinders": 6,
       "delta_torque": 46.00,
@@ -17,7 +17,7 @@
     },
     {
       "id": "IW",
-      "label": "Interwar (Межвоенный)",
+      "label": "epoch_IW",
       "min_cylinders": 2,
       "max_cylinders": 12,
       "delta_torque": 66.3333,
@@ -31,7 +31,7 @@
     },
     {
       "id": "EW",
-      "label": "Earlywar (Ранняя ВМВ)",
+      "label": "epoch_EW",
       "min_cylinders": 2,
       "max_cylinders": 24,
       "delta_torque": 69.4167,
@@ -45,7 +45,7 @@
     },
     {
       "id": "MW",
-      "label": "Midwar (Середина ВМВ)",
+      "label": "epoch_MW",
       "min_cylinders": 2,
       "max_cylinders": 24,
       "delta_torque": 72.9167,
@@ -59,7 +59,7 @@
     },
     {
       "id": "LW",
-      "label": "Latewar (Конец ВМВ)",
+      "label": "epoch_LW",
       "min_cylinders": 2,
       "max_cylinders": 24,
       "delta_torque": 74.1667,

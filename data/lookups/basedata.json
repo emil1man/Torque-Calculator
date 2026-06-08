@@ -2,7 +2,7 @@
   "epochs": [
     {
       "id": "WW",
-      "label": "WW1 (Первая мировая)",
+      "label": "epoch_WW",
       "weight_power": {
         "light": { "weight_t": { "min": 3, "max": 8 }, "power_hp_per_t": { "min": 6, "max": 10 } },
         "medium": { "weight_t": { "min": 12, "max": 20 }, "power_hp_per_t": { "min": 5, "max": 7 } },
@@ -21,7 +21,7 @@
     },
     {
       "id": "IW",
-      "label": "Interwar (Межвоенный)",
+      "label": "epoch_IW",
       "weight_power": {
         "light": { "weight_t": { "min": 6, "max": 12 }, "power_hp_per_t": { "min": 12, "max": 18 } },
         "medium": { "weight_t": { "min": 15, "max": 25 }, "power_hp_per_t": { "min": 10, "max": 14 } },
@@ -40,7 +40,7 @@
     },
     {
       "id": "EW",
-      "label": "Earlywar (Ранняя ВМВ)",
+      "label": "epoch_EW",
       "weight_power": {
         "light": { "weight_t": { "min": 10, "max": 15 }, "power_hp_per_t": { "min": 16, "max": 22 } },
         "medium": { "weight_t": { "min": 20, "max": 30 }, "power_hp_per_t": { "min": 12, "max": 16 } },
@@ -59,7 +59,7 @@
     },
     {
       "id": "MW",
-      "label": "Midwar (Середина ВМВ)",
+      "label": "epoch_MW",
       "weight_power": {
         "light": { "weight_t": { "min": 12, "max": 18 }, "power_hp_per_t": { "min": 20, "max": 26 } },
         "medium": { "weight_t": { "min": 25, "max": 38 }, "power_hp_per_t": { "min": 14, "max": 18 } },
@@ -78,7 +78,7 @@
     },
     {
       "id": "LW",
-      "label": "Latewar (Конец ВМВ)",
+      "label": "epoch_LW",
       "weight_power": {
         "light": { "weight_t": { "min": 15, "max": 22 }, "power_hp_per_t": { "min": 22, "max": 30 } },
         "medium": { "weight_t": { "min": 30, "max": 45 }, "power_hp_per_t": { "min": 16, "max": 20 } },
