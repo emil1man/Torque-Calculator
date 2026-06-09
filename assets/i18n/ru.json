@@ -37,6 +37,8 @@
   "site_title_calculator": "Калькулятор двигателя",
   "label_target_hpt": "Целевая удельная мощность (HP/t)",
   "label_tank_mass": "Текущая масса танка (тонн)",
+  "ph_example_hpt": "Например: 15",
+  "ph_example_mass": "Например: 35.5",
   "error_invalid_number": "Введите корректное число",
   "error_mass_positive": "Масса должна быть больше нуля",
   "res_recommended_torque": "Рекомендуемое Torque:",

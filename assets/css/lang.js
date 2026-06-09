@@ -1,4 +1,5 @@
-// Список поддерживаемых языков на сайте
+// RU: Список поддерживаемых языков на сайте
+// EN: Supported languages for the site
 const supportedLanguages = ['ru', 'en'];
 
 // Определяем стартовый язык пользователя
@@ -26,13 +27,14 @@ function buildLangSelect() {
 // 2. Асинхронно загружаем JSON файл локализации
 async function loadTranslations(lang) {
     try {
-        // Подтягиваем нужный JSON из структуры /assets/i118n/
-        const response = await fetch(`/assets/i118n/${lang}.json`);
+        // Подтягиваем нужный JSON из структуры /assets/i18n/
+        const response = await fetch(`/assets/i18n/${lang}.json`);
         if (!response.ok) throw new Error(`Не удалось загрузить локализацию: ${lang}`);
 
         currentTranslations = await response.json();
 
-        // Сначала переводим весь статический HTML
+        // RU: Сначала переводим весь статический HTML
+        // EN: First apply translations to static HTML elements
         applyTranslations();
 
         // === НАШ ПРАВИЛЬНЫЙ ТРИГГЕР ДЛЯ ДИНАМИЧЕСКИХ СТРАНИЦ ===
@@ -65,9 +67,26 @@ function applyTranslations() {
 
     const langSelect = document.getElementById('langSelect');
     if (langSelect) langSelect.value = currentLang;
+
+    // Сигнализируем другим скриптам, что переводы применены
+    try {
+        document.dispatchEvent(new Event('translationsLoaded'));
+    } catch (e) {}
 }
 
+// RU: Перевод для placeholder у полей ввода
+// EN: Translate placeholder attributes for inputs
+document.addEventListener('translationsLoaded', () => {
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (currentTranslations && currentTranslations[key]) {
+            el.setAttribute('placeholder', currentTranslations[key]);
+        }
+    });
+});
+
 // 4. Функция, которая вызывается при смене выбора в select
+// 4. Called when user changes language select
 function changeLanguage(langCode) {
     if (!supportedLanguages.includes(langCode)) return;
     currentLang = langCode;
@@ -77,11 +96,25 @@ function changeLanguage(langCode) {
     loadTranslations(currentLang);
 }
 
-// Инициализация при загрузке страницы
-document.addEventListener('DOMContentLoaded', () => {
+// RU: Инициализация — запускается после того, как header вставлен в DOM
+// EN: Initialization — run after header is present in the DOM
+function initLang() {
     buildLangSelect();
     loadTranslations(currentLang);
-});
-if (typeof window.buildEpochSelect === 'function') {
-    window.buildEpochSelect();
+    if (typeof window.buildEpochSelect === 'function') {
+        window.buildEpochSelect();
+    }
 }
+
+let langInitialized = false;
+function tryInitLang() {
+    if (langInitialized) return;
+    // Инициализируем только когда селект языка уже в DOM
+    if (document.getElementById('langSelect')) {
+        initLang();
+        langInitialized = true;
+    }
+}
+
+document.addEventListener('siteHeaderMounted', tryInitLang);
+document.addEventListener('DOMContentLoaded', tryInitLang);

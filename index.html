@@ -15,50 +15,12 @@
     <link href="assets/css/shared.css" rel="stylesheet">
 </head>
 <body class="page-centered">
+    <!-- siteHeader will be mounted inside the main card to render vertical navigation there -->
 
     <main>
         <div class="card">
-            <span class="material-icons brand-icon">settings_suggest</span>
-
-            <h1 data-i18n="main_h1">Torque Calculator</h1>
-            <p data-i18n="main_p">Калькулятор рекомендуемых значений двигателя для игры Sprocket.</p>
-
-            <div class="status-badge">
-                <span class="status-dot" style="width:8px;height:8px;background-color:#b3261e;border-radius:50%;display:inline-block;animation:blink 1.5s infinite ease-in-out;"></span>
-                <span data-i18n="status_developing">Проект разрабатывается</span>
-            </div>
-
-            <div class="button-container">
-                <a href="/" class="btn btn--primary">
-                    <span class="icon-chip material-icons" aria-hidden="true">home</span>
-                    <span data-i18n="btn_home">Главная страница</span>
-                </a>
-                <a href="/data/lookups/index.html" class="btn btn--tonal">
-                    <span class="icon-chip material-icons" aria-hidden="true">analytics</span>
-                    <span data-i18n="btn_lookups">Характеристики эпох</span>
-                </a>
-                <a href="/data/calculator/index.html" class="btn btn--tonal">
-                    <span class="icon-chip material-icons" aria-hidden="true">calculate</span>
-                    <span data-i18n="btn_calculator">Калькулятор двигателя</span>
-                </a>
-                <a href="https://store.steampowered.com/app/1674170/Sprocket/" class="btn btn--steam" target="_blank" rel="noopener">
-                    <span class="icon-chip"><span class="ico-steam" aria-hidden="true"></span></span>
-                    <span data-i18n="btn_steam">Открыть игру в Steam</span>
-                </a>
-
-                <a href="https://www.donationalerts.com/r/emil1man" class="btn btn--donate" target="_blank" rel="noopener">
-                    <span class="icon-chip material-icons" aria-hidden="true">favorite</span>
-                    <span data-i18n="btn_donate">Поддержать автора</span>
-                </a>
-
-                <div class="select-group lang-select-group">
-                    <select id="langSelect" onchange="changeLanguage(this.value)"></select>
-                </div>
-
-                <button id="themeToggle" class="btn btn--tonal theme-btn-nav">
-                    <span class="material-icons" id="themeIcon">dark_mode</span>
-                </button>
-            </div>
+            <!-- Header (brand, title, description, nav) will be mounted here -->
+            <div id="siteHeader" data-header-variant="vertical"></div>
         </div>
     </main>
 
@@ -74,6 +36,7 @@
         }
     </style>
 
+    <script type="module" src="/assets/js/header.js"></script>
     <script src="/assets/css/theme.js"></script>
     <script src="/assets/css/lang.js"></script>
 </body>

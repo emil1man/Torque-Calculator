@@ -2,41 +2,29 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 :root {
-    --md-sys-color-background: #ffffff; /* Идеально белый фон */
-    --md-sys-color-on-background: #000000; /* Глубокий черный текст */
-    /* Карточка — светло-серый, чтобы она выделялась на белом фоне */
+    --md-sys-color-background: #ffffff;
+    --md-sys-color-on-background: #000000;
     --md-sys-color-surface: #f2f2f7;
-    /* Кнопки — четко контрастный серый */
     --md-sys-color-surface-variant: #e5e5ea;
-    /* Таблицы — чуть темнее для глубины */
     --md-sys-color-surface-container: #dcdce6;
     --md-sys-color-on-surface: #000000;
     --md-sys-color-on-surface-variant: #3a3a3c;
-    /* Акцент — абсолютный черный */
     --md-sys-color-primary: #000000;
     --md-sys-color-on-primary: #ffffff;
-    /* Четкие границы, чтобы элемент "читался" */
     --md-sys-color-outline: #c6c6c8;
 }
 
-/* Вставить в body.dark-theme (Ультимативный TRUE OLED MODE) */
 body.dark-theme {
-    --md-sys-color-background: #000000; /* Пиксели ВЫКЛЮЧЕНЫ. Физический черный цвет */
-    --md-sys-color-on-background: #ffffff; /* Идеально белый читаемый текст */
-    /* Карточка — очень темное железо. Она не сливается с фоном, но границы будут четкими */
+    --md-sys-color-background: #000000;
+    --md-sys-color-on-background: #ffffff;
     --md-sys-color-surface: #0d0e10;
-    /* Кнопки — графитовые плиты, которые отчетливо видно на карточке */
     --md-sys-color-surface-variant: #1c1d22;
-    /* Внутренние таблицы на страницах эпох */
     --md-sys-color-surface-container: #050607;
     --md-sys-color-on-surface: #ffffff;
-    --md-sys-color-on-surface-variant: #9ea2aa; /* Комфортный серый текст на кнопках */
-    /* Главные акцентные кнопки (например, Главная или Поддержать) */
+    --md-sys-color-on-surface-variant: #9ea2aa;
     --md-sys-color-primary: #ffffff;
     --md-sys-color-on-primary: #000000;
-    /* Тонкие рамки и разделители */
     --md-sys-color-outline: #2d3037;
-    /* Для OLED тени не нужны (черное на черном не отбрасывает тень) */
     --md-elevation-1: 0px 0px 0px 1px #1c1d22;
 }
 
@@ -46,31 +34,6 @@ body.dark-theme {
     margin: 0;
     padding: 0;
 }
-
-/* Page helpers */
-.page-centered {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 16px;
-}
-
-.page-container {
-    padding: 24px;
-    width: 80%; /* Занимает 80% от ширины любого экрана */
-    max-width: 100%; /* Убираем жесткий лимит в пикселях */
-    margin: 0 auto;
-}
-
-    /* Scoped header for pages that should match скриншот */
-    .page-container > h1 {
-        font-size: 20px;
-        font-weight: 500;
-        margin: 10px 0 22px;
-        text-align: center;
-        color: var(--md-sys-color-on-background);
-    }
 
 /* Базовые */
 body {
@@ -86,23 +49,46 @@ p {
     line-height: 24px;
 }
 
+/* Page helpers */
+.page-centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 16px;
+}
+
+.page-container {
+    padding: 24px;
+    width: 80%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+    .page-container > h1 {
+        font-size: 20px;
+        font-weight: 500;
+        margin: 10px 0 22px;
+        text-align: center;
+        color: var(--md-sys-color-on-background);
+    }
+
+/* Шапка сайта */
 .site-header {
     width: 100%;
     background-color: var(--md-sys-color-background);
     padding: 32px 0 12px 0;
 }
 
-/* Внутренний контейнер больше НЕ зажат в 900px, у него нет потолка по ширине */
 .header-inner {
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
-    padding: 0 24px; /* Безопасные отступы по бокам экрана на случай сужения вкладки */
+    padding: 0 24px;
     box-sizing: border-box;
     text-align: center;
 }
 
-/* Заголовок сайта */
 .site-title {
     font-size: 26px;
     font-weight: 500;
@@ -110,65 +96,38 @@ p {
     color: var(--md-sys-color-on-background);
 }
 
-/* Card */
-.card {
-    background-color: var(--md-sys-color-surface);
-    border-radius: 12px;
-    padding: 24px;
-    box-shadow: var(--md-elevation-1);
-    text-align: center;
-    max-width: 440px;
-    width: 100%;
-}
+/* ======================================================== */
+/* БЛОК НАВИГАЦИИ (СТАБИЛИЗИРОВАННЫЙ) */
+/* ======================================================== */
 
-    /* Главный заголовок на карточке */
-    .card .site-title {
-        font-size: 32px;
-        font-weight: 600;
-        margin: 0 0 12px 0; /* 12px снизу, чтобы оттолкнуть описание */
-        letter-spacing: -0.5px; /* Слегка соберем буквы для аккуратности */
-    }
-
-    /* Текст описания калькулятора */
-    .card p {
-        font-size: 15px;
-        line-height: 1.5; /* Увеличиваем межстрочный интервал, чтобы текст читался легче */
-        margin: 0 0 16px 0; /* Отталкиваем статус разработки вниз */
-        color: var(--md-sys-color-on-surface-variant);
-        padding: 0 12px; /* Слегка сужаем текстовый блок по бокам, чтобы он не расплывался */
-    }
-
-    .card .status-badge {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px; /* Зазор между мигающей точкой и текстом */
-        font-size: 14px;
-        font-weight: 500;
-        color: var(--md-sys-color-on-surface-variant);
-        /* Вот он — наш главный спасительный отступ, который отодвинет кнопки! */
-        margin-bottom: 36px;
-    }
-
-/* Иконка в самом верху карточки */
-.brand-icon {
-    font-size: 40px;
-    margin-bottom: 16px; /* Увеличиваем отступ от иконки до заголовка */
-    color: var(--md-sys-color-primary);
-}
-
-/* Контейнер кнопок на главной */
+/* Контейнер кнопок по умолчанию (Горизонтальный ряд для внутренних страниц) */
 .button-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 12px;
-    align-items: stretch; /* Растягивает все кнопки до одинаковой максимальной ширины */
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    max-width: 320px; /* Опционально: чтобы кнопки не прижимались вплотную к краям карточки */
-    margin: 0 auto; /* Центрирует сам блок с кнопками внутри карточки */
 }
 
-/* Buttons: единый базовый класс + модификаторы (пилловый стиль) */
+/* Адаптивный скролл на мобилках для внутренних страниц */
+.nav-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+/* Переключение в колонку только на главной (.card) и в вертикальной шапке */
+.card .button-container,
+.site-header--vertical .button-container {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+/* Кнопки: Базовый класс */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -184,6 +143,8 @@ p {
     transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
     padding: 0 20px;
     color: inherit;
+    white-space: nowrap;
+    flex: 0 0 auto;
 }
 
     .btn:hover {
@@ -195,17 +156,12 @@ p {
         transform: translateY(0) scale(.99);
     }
 
-    .btn:focus {
-        outline: none;
-    }
-
     .btn:focus-visible {
         outline: 3px solid rgba(103,80,164,0.18);
         outline-offset: 3px;
         border-radius: 28px;
     }
 
-    /* Icon inside button: square chip left of label */
     .btn .icon-chip {
         display: inline-flex;
         align-items: center;
@@ -218,7 +174,7 @@ p {
         flex: 0 0 32px;
     }
 
-/* Variants */
+/* Модификаторы кнопок */
 .btn--primary {
     background-color: var(--md-sys-color-primary);
     color: var(--md-sys-color-on-primary);
@@ -231,14 +187,18 @@ p {
 
 .btn--tonal {
     background-color: var(--md-sys-color-surface-variant);
-    color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-surface-variant);
     box-shadow: none;
 }
 
     .btn--tonal .icon-chip {
         background: rgba(0,0,0,0.06);
-        color: var(--md-sys-color-primary);
+        color: var(--md-sys-color-on-surface-variant);
     }
+
+body.dark-theme .btn--tonal .icon-chip {
+    background: rgba(255,255,255,0.1);
+}
 
 .btn--steam {
     background-color: #171a21;
@@ -250,126 +210,238 @@ p {
         color: #fff;
     }
 
-.btn--donate {
-    background-color: var(--md-sys-color-primary);
-    color: var(--md-sys-color-on-primary);
+/* Кнопка смены темы (Изолированная, всегда круглая) */
+.theme-btn-nav,
+.btn.theme-btn-nav {
+    width: 44px !important;
+    height: 44px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex: 0 0 44px !important;
+    box-shadow: none !important;
+    background-color: var(--md-sys-color-surface-variant) !important;
+    color: var(--md-sys-color-on-surface-variant) !important;
+    border: none !important;
 }
 
-    .btn--donate .icon-chip {
-        background: rgba(255,255,255,0.12);
-        color: var(--md-sys-color-on-primary);
+    .theme-btn-nav:hover,
+    .btn.theme-btn-nav:hover {
+        transform: translateY(-2px);
+        background-color: var(--md-sys-color-surface-container) !important;
     }
 
-/* Кнопка темы (универсальный круглый стиль для всех страниц) */
-.theme-btn-nav {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px; /* Идеальный круг */
-    height: 44px;
-    padding: 0;
-    border-radius: 50%; /* Делаем кнопку круглой */
+    .theme-btn-nav .material-icons {
+        font-size: 20px;
+        margin: 0;
+    }
+
+/* Выравнивание элементов управления внутри колонки */
+.card .button-container .theme-btn-nav,
+.site-header--vertical .button-container .theme-btn-nav,
+.card .button-container .lang-select-group,
+.site-header--vertical .button-container .lang-select-group {
+    align-self: center;
+    margin: 4px auto;
+}
+
+/* Селектор языка */
+.lang-select-group {
+    display: inline-block;
+    vertical-align: middle;
     flex: 0 0 auto;
 }
 
-/* Если кнопка находится внутри вертикального контейнера на главной */
-.button-container .theme-btn-nav {
-    margin: 0 auto 0 auto;
+    .lang-select-group select {
+        width: 65px;
+        height: 44px;
+        border-radius: 22px;
+        padding: 0;
+        cursor: pointer;
+        font-weight: 500;
+        text-align: center;
+        text-align-last: center;
+        border: none;
+        background-color: var(--md-sys-color-surface-variant);
+        color: var(--md-sys-color-on-surface-variant);
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+
+        .lang-select-group select:hover {
+            background-color: var(--md-sys-color-surface-container);
+        }
+
+/* Вертикальная шапка (для главной страницы, если используется) */
+.site-header--vertical {
+    display: block;
+    padding: 24px;
 }
 
-.theme-btn-nav .material-icons {
-    font-size: 20px;
-    margin: 0;
+    .site-header--vertical .header-inner {
+        max-width: 360px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .site-header--vertical .nav-container {
+        background-color: var(--md-sys-color-surface);
+        padding: 10px;
+        border-radius: 14px;
+        margin-top: 16px;
+    }
+
+/* Карточки и сетка */
+.card {
+    background-color: var(--md-sys-color-surface);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--md-elevation-1);
+    text-align: center;
+    max-width: 440px;
+    width: 100%;
 }
 
-/* Steam data‑uri (один источник) */
+    .card .site-title {
+        font-size: 32px;
+        font-weight: 600;
+        margin: 0 0 12px 0;
+        letter-spacing: -0.5px;
+    }
+
+    .card p {
+        font-size: 15px;
+        line-height: 1.5;
+        margin: 0 0 16px 0;
+        color: var(--md-sys-color-on-surface-variant);
+        padding: 0 12px;
+    }
+
+    .card .status-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--md-sys-color-on-surface-variant);
+        margin-bottom: 36px;
+    }
+
+.brand-icon {
+    font-size: 40px;
+    margin-bottom: 16px;
+    color: var(--md-sys-color-primary);
+}
+
 .ico-steam {
     width: 20px;
     height: 20px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23ffffff'/%3E%3Cpath d='M15.974 0c-8.401 0-15.292 6.479-15.943 14.714l8.573 3.547c0.729-.495 1.604-.786 2.552-.786.083 0 .167 0 .25 0l3.813-5.521v-.078c0-3.328 2.703-6.031 6.031-6.031s6.036 2.708 6.036 6.036c0 3.328-2.708 6.031-6.036 6.031h-.135l-5.438 3.88c0 .073 0 .141 0 .214 0 2.5-2.021 4.526-4.521 4.526-2.177 0-4.021-1.563-4.443-3.635l-6.135-2.542c1.901 6.719 8.063 11.641 15.391 11.641 8.833 0 15.995-7.161 15.995-16s-7.161-16-15.995-16zM10.052 24.281l-1.964-.813c.349.724.953 1.328 1.755 1.667 1.729.719 3.724-.104 4.443-1.833.349-.844.349-1.76 0-2.599-.344-.844-1-1.495-1.839-1.844-.828-.349-1.719-.333-2.5-.042l2.026.839c1.276.536 1.88 2 1.349 3.276s-2 1.88-3.276 1.349zM25.271 11.875c0-2.214-1.802-4.021-4.016-4.021-2.224 0-4.021 1.807-4.021 4.021 0 2.219 1.797 4.021 4.021 4.021 2.214 0 4.016-1.802 4.016-4.021zM18.245 11.87c0-1.672 1.349-3.021 3.016-3.021s3.026 1.349 3.026 3.021c0 1.667-1.359 3.021-3.026 3.021s-3.016-1.354-3.016-3.021z'/%3E%3C/svg%3E")
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23ffffff'/%3E%3Cpath d='M15.974 0c-8.401 0-15.292 6.479-15.943 14.714l8.573 3.547c0.729-.495 1.604-.786 2.552-.786.083 0 .167 0 .25 0l3.813-5.521v-.078c0-3.328 2.703-6.031 6.031-6.031s6.036 2.708 6.036 6.036c0 3.328-2.708 6.031-6.036 6.031h-.135l-5.438 3.88c0 .073 0 .141 0 .214 0 2.5-2.021 4.526-4.521 4.526-2.177 0-4.021-1.563-4.443-3.635l-6.135-2.542c1.901 6.719 8.063 11.641 15.391 11.641 8.833 0 15.995-7.161 15.995-16s-7.161-16-15.995-16zM10.052 24.281l-1.964-.813c.349.724.953 1.328 1.755 1.667 1.729.719 3.724-.104 4.443-1.833.349-.844.349-1.76 0-2.599-.344-.844-1-1.495-1.839-1.844-.828-.349-1.719-.333-2.5-.042l2.026.839c1.276.536 1.88 2 1.349 3.276s-2 1.88-3.276 1.349zM25.271 11.875c0-2.214-1.802-4.021-4.016-4.021-2.224 0-4.021 1.807-4.021 4.021 0 2.219 1.797 4.021 4.021 4.021 2.214 0 4.016-1.802 4.016-4.021zM18.245 11.87c0-1.672 1.349-3.021 3.016-3.021s3.026 1.349 3.026 3.021c0 1.667-1.359 3.021-3.026 3.021s-3.016-1.354-3.016-3.021z'/%3E%3C/svg%3E");
 }
 
-/* ======================================================== */
-/* БЛОК НАВИГАЦИИ (АБСОЛЮТНАЯ СТАБИЛИЗАЦИЯ) */
-/* ======================================================== */
+#infoCard {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
 
-/* Контейнер кнопок навигации */
-.nav-container {
+@media (min-width: 900px) {
+    #infoCard {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.tank-class-card {
+    background-color: var(--md-sys-color-surface);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--md-elevation-1);
+    transition: background-color 0.3s ease;
+}
+
+.card-header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--md-sys-color-on-background);
+}
+
+.section-subtitle {
     display: flex;
-    flex-wrap: wrap; /* Мягкий перенос кнопок при нехватке места */
-    gap: 12px;
-    justify-content: center; /* Кнопки всегда строго по центру */
-    width: 100%;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    color: var(--md-sys-color-primary);
 }
 
-    .nav-container > .btn {
-        flex: 0 0 auto;
-        white-space: nowrap; /* Текст кнопок строго в одну строку */
+    .section-subtitle .material-icons {
+        font-size: 1.3rem;
     }
 
-/* НАДЕЖНЫЙ ФИКС ДЛЯ СЕЛЕКТА ВЫБОРА ЯЗЫКА В ШАПКЕ */
-.lang-select-group {
-    margin: 0;
-    display: inline-block;
-    vertical-align: middle;
-    flex-shrink: 0;
+.data-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 0.95rem;
+    border-bottom: 1px solid var(--md-sys-color-surface-variant);
 }
 
-    .lang-select-group select {
-        width: 65px; /* Компактная ширина под 2 буквы (RU / EN) */
-        height: 44px; /* Строго соответствует высоте остальных кнопок (.btn) */
-        padding: 0 !important; /* Намертво сбрасываем боковые отступы, ломавшие центрирование */
-        cursor: pointer;
-        font-weight: 500;
-        border-radius: 28px; /* Делает плашку округлой под стиль Material */
-        /* Полное удаление встроенной стрелочки браузера */
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        background-image: none !important;
-        /* Идеальное выравнивание букв строго по геометрическому центру */
-        text-align: center;
-        text-align-last: center;
+    .data-row:last-child {
+        border-bottom: none;
     }
 
-        .lang-select-group select::-ms-expand {
-            display: none; /* Фикс скрытия стрелочки для старых версий Edge/IE */
-        }
+.data-label {
+    color: var(--md-sys-color-on-surface-variant);
+}
 
-/* Адаптив для мобильных устройств (мобильная лента) */
+.data-value {
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface);
+}
+
+/* Мобильный адаптив для горизонтальной прокрутки меню */
 @media (max-width: 600px) {
     .site-header {
         padding: 16px 0 8px 0;
     }
 
     .header-inner {
-        padding: 0; /* Убираем отступы, чтобы лента кнопок уходила в край экрана */
+        padding: 0;
     }
 
     .site-title {
         font-size: 20px;
-        padding: 0 16px; /* Заголовок на мобилках не прилипает к краям */
+        padding: 0 16px;
         margin-bottom: 16px;
     }
 
-    .nav-container {
+    .button-container {
         flex-wrap: nowrap;
         justify-content: flex-start;
-        overflow-x: auto; /* Горизонтальный скролл на смартфонах */
+        overflow-x: auto;
         padding: 4px 16px 12px 16px;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
     }
 
-        .nav-container::-webkit-scrollbar {
+        .button-container::-webkit-scrollbar {
             display: none;
         }
 }
 
-/* Selects / filters (восстановил стили выпадающих списков) */
+/* Формы и таблицы калькулятора */
 .filters-container {
     display: flex;
     gap: 16px;
@@ -408,7 +480,6 @@ p {
             border-color: var(--md-sys-color-primary);
         }
 
-/* Calculator / inputs */
 .calculator-card {
     background-color: var(--md-sys-color-surface);
     border-radius: 16px;
@@ -451,12 +522,11 @@ p {
             box-shadow: 0 4px 14px rgba(103,80,164,0.06);
         }
 
-/* Results */
 .results-card {
     background-color: var(--md-sys-color-surface-container);
     border-radius: 16px;
     padding: 24px;
-    border: 1px solid var(--md-sys-color-outline-variant);
+    border: 1px solid var(--md-sys-color-outline);
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -495,7 +565,7 @@ p {
 
 .sub-box {
     background-color: var(--md-sys-color-surface);
-    border: 1px solid var(--md-sys-color-outline-variant);
+    border: 1px solid var(--md-sys-color-outline);
     padding: 6px 12px;
     border-radius: 8px;
     font-weight: 700;
@@ -503,7 +573,6 @@ p {
     text-align: center;
 }
 
-/* Info card */
 .info-card {
     background-color: var(--md-sys-color-surface);
     border-radius: 12px;
@@ -541,7 +610,7 @@ tr:last-child td {
 .label-cell {
     color: var(--md-sys-color-on-surface-variant);
     text-align: left;
-    width: 75%; /* Значения держатся ближе к центру на широких экранах */
+    width: 75%;
     padding-right: 10px;
 }
 
@@ -566,42 +635,3 @@ tr:last-child td {
         color: var(--md-sys-color-primary);
         font-size: 20px;
     }
-/* Ограничиваем ширину контейнера и центрируем его в родителе */
-.lang-select-group {
-    max-width: 80px;
-    width: 100%;
-    display: block; /* сделать блочным, чтобы margin:auto работал */
-    margin: 6px auto 0; /* центрирование по горизонтали + небольшой отступ сверху */
-}
-
-    .lang-select-group select {
-        width: 100%;
-        padding: 6px 8px;
-        border-radius: 8px;
-        background-color: var(--md-sys-color-surface-variant);
-        color: var(--md-sys-color-on-surface-variant);
-        border: 1px solid transparent;
-        font-weight: 500;
-        cursor: pointer;
-        box-sizing: border-box;
-    }
-/* Prevent language selector from stretching inside nav; keep centered when in button-container */
-.nav-container .lang-select-group {
-  flex: 0 0 auto;   /* не растягиваться как flex‑элемент */
-  width: auto;      /* не 100% */
-  max-width: 80px;  /* прежнее ограничение */
-  margin: 0;        /* сброс отступов */
-}
-
-/* сохранить визуальное оформление селекта */
-.nav-container .lang-select-group select {
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.button-container .lang-select-group {
-  display: block;
-  width: 100%;
-  max-width: 80px;
-  margin: 6px auto 0; /* центрировать внутри карточки */
-}

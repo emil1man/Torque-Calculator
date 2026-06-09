@@ -15,40 +15,7 @@
     <link href="../../assets/css/shared.css" rel="stylesheet">
 </head>
 <body>
-    <header class="site-header">
-        <div class="header-inner">
-            <h1 class="site-title" data-i18n="site_title_calculator">Калькулятор двигателя</h1>
-
-            <div class="nav-container">
-                <a href="/" class="btn btn--primary">
-                    <span class="icon-chip material-icons" aria-hidden="true">home</span>
-                    <span data-i18n="btn_home">Главная страница</span>
-                </a>
-                <a href="/data/lookups/index.html" class="btn btn--tonal">
-                    <span class="icon-chip material-icons" aria-hidden="true">analytics</span>
-                    <span data-i18n="btn_lookups">Характеристики эпох</span>
-                </a>
-                <a href="/data/calculator/index.html" class="btn btn--tonal">
-                    <span class="icon-chip material-icons" aria-hidden="true">calculate</span>
-                    <span data-i18n="btn_calculator">Калькулятор двигателя</span>
-                </a>
-                <a href="https://store.steampowered.com/app/1674170/Sprocket/" class="btn btn--steam" target="_blank" rel="noopener">
-                    <span class="icon-chip"><span class="ico-steam" aria-hidden="true"></span></span>
-                    <span data-i18n="btn_steam">Игра в Steam</span>
-                </a>
-                <a href="https://www.donationalerts.com/r/emil1man" class="btn btn--primary" target="_blank" rel="noopener">
-                    <span class="icon-chip material-icons" aria-hidden="true">favorite</span>
-                    <span data-i18n="btn_donate">Поддержать автора</span>
-                </a>
-                <div class="select-group lang-select-group">
-                    <select id="langSelect" onchange="changeLanguage(this.value)"></select>
-                </div>
-                <button id="themeToggle" class="btn btn--tonal theme-btn-nav">
-                    <span class="material-icons" id="themeIcon">dark_mode</span>
-                </button>
-            </div>
-        </div>
-    </header>
+    <div id="siteHeader"></div>
     <main class="page-container">
 
         <div class="calculator-card">
@@ -59,13 +26,13 @@
 
             <div class="input-group">
                 <label for="inputHPT" data-i18n="label_target_hpt">Целевая удельная мощность (HP/t)</label>
-                <input type="number" id="inputHPT" placeholder="Например: 15" step="0.1" min="1" oninput="calculate()">
+                <input type="number" id="inputHPT" data-i18n-placeholder="ph_example_hpt" placeholder="Например: 15" step="0.1" min="1" oninput="calculate()">
                 <span class="error-text" id="errorHPT" data-i18n="error_invalid_number">Введите корректное число</span>
             </div>
 
             <div class="input-group">
                 <label for="inputMass" data-i18n="label_tank_mass">Текущая масса танка (тонн)</label>
-                <input type="number" id="inputMass" placeholder="Например: 35.5" step="0.1" min="0.1" oninput="calculate()">
+                <input type="number" id="inputMass" data-i18n-placeholder="ph_example_mass" placeholder="Например: 35.5" step="0.1" min="0.1" oninput="calculate()">
                 <span class="error-text" id="errorMass" data-i18n="error_mass_positive">Масса должна быть больше нуля</span>
             </div>
         </div>
@@ -307,18 +274,10 @@
             document.getElementById('outV').innerText = `- ${uL}`;
         }
 
-        // Наблюдатель (MutationObserver) для отслеживания асинхронной загрузки переводов
-        const observer = new MutationObserver(() => {
-            if (typeof currentTranslations !== 'undefined' && currentTranslations["epoch_WW"]) {
-                buildEpochSelect();
-            }
+        // Ждём сигнала, что переводы загружены/применены, затем строим селект эпох
+        document.addEventListener('translationsLoaded', () => {
+            buildEpochSelect();
         });
-
-        // Следим за изменениями h1, так как он гарантированно переводится через lang.js
-        const targetNode = document.querySelector('.site-title');
-        if (targetNode) {
-            observer.observe(targetNode, { childList: true, characterData: true, subtree: true });
-        }
 
         window.buildEpochSelect = buildEpochSelect;
 
@@ -326,6 +285,7 @@
         document.addEventListener('DOMContentLoaded', loadData);
     </script>
 
+    <script type="module" src="/assets/js/header.js"></script>
     <script src="/assets/css/theme.js"></script>
     <script src="/assets/css/lang.js"></script>
 </body>

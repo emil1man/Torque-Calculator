@@ -37,6 +37,8 @@
   "site_title_calculator": "Engine Calculator",
   "label_target_hpt": "Target Power-to-Weight ratio (HP/t)",
   "label_tank_mass": "Current Tank Mass (tons)",
+  "ph_example_hpt": "Example: 15",
+  "ph_example_mass": "Example: 35.5",
   "error_invalid_number": "Please enter a valid number",
   "error_mass_positive": "Mass must be greater than zero",
   "res_recommended_torque": "Recommended Torque:",

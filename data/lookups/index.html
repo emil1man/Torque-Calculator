@@ -14,110 +14,10 @@
 
     <link href="../../assets/css/shared.css" rel="stylesheet">
 
-    <style>
-        #infoCard {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        @media (min-width: 900px) {
-            #infoCard {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .tank-class-card {
-            background-color: var(--md-sys-color-surface);
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: var(--md-elevation-1);
-            transition: background-color 0.3s ease;
-        }
-
-        .card-header {
-            font-size: 1.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 20px;
-            color: var(--md-sys-color-on-background);
-        }
-
-        .section-subtitle {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            margin-top: 15px;
-            margin-bottom: 8px;
-            color: var(--md-sys-color-primary);
-        }
-
-            .section-subtitle .material-icons {
-                font-size: 1.3rem;
-            }
-
-        .data-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 6px 0;
-            font-size: 0.95rem;
-            border-bottom: 1px solid var(--md-sys-color-surface-variant);
-        }
-
-            .data-row:last-child {
-                border-bottom: none;
-            }
-
-        .data-label {
-            color: var(--md-sys-color-on-surface-variant);
-        }
-
-        .data-value {
-            font-weight: 500;
-            color: var(--md-sys-color-on-surface);
-        }
-    </style>
+    <!-- Styles moved to assets/css/shared.css -->
 </head>
 <body>
-    <header class="site-header">
-        <div class="header-inner">
-            <h1 class="site-title" data-i18n="site_title_lookups">Характеристики эпох</h1>
-
-            <div class="nav-container">
-                <a href="/" class="btn btn--primary">
-                    <span class="icon-chip material-icons" aria-hidden="true">home</span>
-                    <span data-i18n="btn_home">Главная страница</span>
-                </a>
-                <a href="/data/lookups/index.html" class="btn btn--tonal">
-                    <span class="icon-chip material-icons" aria-hidden="true">analytics</span>
-                    <span data-i18n="btn_lookups">Характеристики эпох</span>
-                </a>
-                <a href="/data/calculator/index.html" class="btn btn--tonal">
-                    <span class="icon-chip material-icons" aria-hidden="true">calculate</span>
-                    <span data-i18n="btn_calculator">Калькулятор двигателя</span>
-                </a>
-                <a href="https://store.steampowered.com/app/1674170/Sprocket/" class="btn btn--steam" target="_blank" rel="noopener">
-                    <span class="icon-chip"><span class="ico-steam" aria-hidden="true"></span></span>
-                    <span data-i18n="btn_steam">Игра в Steam</span>
-                </a>
-                <a href="https://www.donationalerts.com/r/emil1man" class="btn btn--primary" target="_blank" rel="noopener">
-                    <span class="icon-chip material-icons" aria-hidden="true">favorite</span>
-                    <span data-i18n="btn_donate">Поддержать автора</span>
-                </a>
-
-                <div class="select-group lang-select-group">
-                    <select id="langSelect" onchange="changeLanguage(this.value)"></select>
-                </div>
-
-                <button id="themeToggle" class="btn btn--tonal theme-btn-nav">
-                    <span class="material-icons" id="themeIcon">dark_mode</span>
-                </button>
-            </div>
-        </div>
-    </header>
+    <div id="siteHeader"></div>
     <main class="page-container">
 
         <div class="filters-container">
@@ -291,6 +191,7 @@
         loadData();
     </script>
 
+    <script type="module" src="/assets/js/header.js"></script>
     <script src="/assets/css/theme.js"></script>
     <script src="/assets/css/lang.js"></script>
 </body>
