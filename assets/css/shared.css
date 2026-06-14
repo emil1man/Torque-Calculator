@@ -635,3 +635,24 @@ tr:last-child td {
         color: var(--md-sys-color-primary);
         font-size: 20px;
     }
+
+.warning-banner--power {
+    display: none;
+    background-color: rgba(255, 152, 0, 0.15);
+    border-left: 4px solid #ff9800;
+    padding: 12px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+    color: #ffb74d;
+}
+
+.warning-banner__icon {
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+body.dark-theme .warning-banner--power {
+    background-color: rgba(255, 152, 0, 0.08);
+    border-left-color: #ff9800;
+    color: #ffc76d;
+}

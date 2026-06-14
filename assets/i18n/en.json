@@ -13,7 +13,7 @@
   "class_light": "Light",
   "class_medium": "Medium",
   "class_heavy": "Heavy",
-  "loading_note": "Note: Engine performance and strict volume limits depend heavily on the selected historical era. Adjust cylinders (n) and cylinder volume (V) to match real-world specifications.",
+  "loading_note": "Note: These characteristics serve as a guideline for each era. Your tank's actual parameters may vary depending on your concept — a light scout and a heavy assault tank of the same era play by different rules.",
   "filter_epoch": "Era",
   "sec_weight_power": "Weight & Power",
   "lbl_weight": "Recommended Weight",
@@ -56,5 +56,6 @@
   "epoch_IW": "Interwar",
   "epoch_EW": "Earlywar",
   "epoch_MW": "Midwar",
-  "epoch_LW": "Latewar"
+  "epoch_LW": "Latewar",
+  "openTopGear": "Open in SprocketTools Gear Calculator"
 }

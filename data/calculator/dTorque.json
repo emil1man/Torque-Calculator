@@ -11,9 +11,7 @@
       "RPM_min": 900,
       "rpm_max_limit": 3200,
       "C_base": 7272,
-      "C_loss": 30,
-      "hp_per_torque": 0.2,
-      "base_hp": 2.0
+      "C_loss": 30
     },
     {
       "id": "IW",
@@ -25,9 +23,7 @@
       "RPM_min": 1700,
       "rpm_max_limit": 5900,
       "C_base": 7430,
-      "C_loss": 10,
-      "hp_per_torque": 0.27,
-      "base_hp": 43.0
+      "C_loss": 10
     },
     {
       "id": "EW",
@@ -39,9 +35,7 @@
       "RPM_min": 2100,
       "rpm_max_limit": 7000,
       "C_base": 7830,
-      "C_loss": 55,
-      "hp_per_torque": 0.467,
-      "base_hp": 7.33
+      "C_loss": 55
     },
     {
       "id": "MW",
@@ -53,9 +47,7 @@
       "RPM_min": 2600,
       "rpm_max_limit": 8600,
       "C_base": 8000,
-      "C_loss": 36,
-      "hp_per_torque": 0.567,
-      "base_hp": 9.33
+      "C_loss": 36
     },
     {
       "id": "LW",
@@ -67,9 +59,7 @@
       "RPM_min": 2800,
       "rpm_max_limit": 9300,
       "C_base": 8050,
-      "C_loss": 44,
-      "hp_per_torque": 0.667,
-      "base_hp": 9.33
+      "C_loss": 44
     }
   ]
 }

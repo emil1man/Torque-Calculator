@@ -6,13 +6,15 @@
     <title data-i18n="page_title_calculator">Калькулятор двигателя — Sprocket</title>
     <meta name="description" content="Калькулятор двигателя для Sprocket — подберите удельную мощность и массу танка, получите рекомендованный крутящий момент и объём.">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/materialicons/v145/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" as="style" onload="this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
+    <script src="/assets/js/init.js"></script>
 
-    <link href="../../assets/css/shared.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.gstatic.com/s/materialicons/v145/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2" as="font" type="font/woff2" crossorigin>
+
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
+    <link href="/assets/css/shared.css" rel="stylesheet">
 </head>
 <body>
     <div id="siteHeader"></div>
@@ -26,20 +28,20 @@
 
             <div class="input-group">
                 <label for="inputHPT" data-i18n="label_target_hpt">Целевая удельная мощность (HP/t)</label>
-                <input type="number" id="inputHPT" data-i18n-placeholder="ph_example_hpt" placeholder="Например: 15" step="0.1" min="1" oninput="calculate()">
+                <input type="number" id="inputHPT" data-i18n-placeholder="ph_example_hpt" placeholder="Например: 15" step="0.1" min="1" oninput="debounceCalculate()">
                 <span class="error-text" id="errorHPT" data-i18n="error_invalid_number">Введите корректное число</span>
             </div>
 
             <div class="input-group">
                 <label for="inputMass" data-i18n="label_tank_mass">Текущая масса танка (тонн)</label>
-                <input type="number" id="inputMass" data-i18n-placeholder="ph_example_mass" placeholder="Например: 35.5" step="0.1" min="0.1" oninput="calculate()">
+                <input type="number" id="inputMass" data-i18n-placeholder="ph_example_mass" placeholder="Например: 35.5" step="0.1" min="0.1" oninput="debounceCalculate()">
                 <span class="error-text" id="errorMass" data-i18n="error_mass_positive">Масса должна быть больше нуля</span>
             </div>
         </div>
 
-        <div id="powerWarning" class="warning-banner" style="display: none; background-color: rgba(255, 152, 0, 0.15); border-left: 4px solid #ff9800; padding: 12px; margin-bottom: 16px; border-radius: 4px; color: #ffb74d;">
-            <span class="material-icons" style="vertical-align: middle; margin-right: 8px;">warning</span>
-            <span id="warningText" style="vertical-align: middle;">Предупреждение</span>
+        <div id="powerWarning" class="warning-banner warning-banner--power">
+            <span class="material-icons warning-banner__icon">warning</span>
+            <span id="warningText">Предупреждение</span>
         </div>
 
         <div class="results-card">
@@ -60,6 +62,16 @@
                     <div class="sub-box" id="outV" title="Объем цилиндра (V)">- L</div>
                 </div>
             </div>
+        </div>
+
+        <div class="button-container" style="justify-content:center; margin-top:16px;">
+            <button id="topGearBtn"
+                    class="btn btn--tonal"
+                    data-i18n="openTopGear"
+                    onclick="openTopGear()"
+                    style="display:none;">
+                Open Top Gear Calculator
+            </button>
         </div>
 
     </main>
@@ -259,6 +271,7 @@
             document.getElementById('outDisplacement').innerText = `${finalDisplacement.toFixed(2)} ${uL}`;
             document.getElementById('outN').innerText = bestN;
             document.getElementById('outV').innerText = `${bestV.toFixed(2)} ${uL}`;
+            document.getElementById('topGearBtn').style.display = 'inline-block';
         }
 
         function clearResults() {
@@ -272,6 +285,10 @@
             document.getElementById('outDisplacement').innerText = `- ${uL}`;
             document.getElementById('outN').innerText = "-";
             document.getElementById('outV').innerText = `- ${uL}`;
+            const topGearBtn = document.getElementById('topGearBtn');
+            if (topGearBtn) {
+                topGearBtn.style.display = 'none';
+            }
         }
 
         // Ждём сигнала, что переводы загружены/применены, затем строим селект эпох
@@ -283,10 +300,54 @@
 
         // Запуск инициализации данных (безопаснее DOMContentLoaded вместо window.onload)
         document.addEventListener('DOMContentLoaded', loadData);
+        let calcTimeout;
+        function debounceCalculate() {
+            clearTimeout(calcTimeout);
+            calcTimeout = setTimeout(calculate, 150);
+        }
+        function openTopGear() {
+            const mass = parseFloat(
+                document.getElementById('inputMass').value
+            );
+
+            const epoch = document.getElementById('epochSelect').value;
+
+            const n = parseInt(
+                document.getElementById('outN').textContent
+            );
+
+            const vText = document
+                .getElementById('outV')
+                .textContent;
+
+            const v = parseFloat(vText);
+
+            const eraMap = {
+                WW: 'WWI',
+                IW: 'Interwar',
+                EW: 'Earlywar',
+                MW: 'Midwar',
+                LW: 'Latewar'
+            };
+
+            const params = new URLSearchParams({
+                era: eraMap[epoch],
+                w: mass,
+                v: v,
+                c: n
+            });
+
+            window.open(
+                `https://sprockettools.github.io/TopGearCalculator.html?${params}`,
+                '_blank'
+            );
+        }
+
+        window.openTopGear = openTopGear;
     </script>
 
     <script type="module" src="/assets/js/header.js"></script>
-    <script src="/assets/css/theme.js"></script>
-    <script src="/assets/css/lang.js"></script>
+    <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/lang.js"></script>
 </body>
 </html>

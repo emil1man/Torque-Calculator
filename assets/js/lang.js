@@ -2,8 +2,26 @@
 // EN: Supported languages for the site
 const supportedLanguages = ['ru', 'en'];
 
-// Определяем стартовый язык пользователя
-let currentLang = localStorage.getItem('site_lang') || 'ru';
+function getInitialLanguage() {
+    const saved = localStorage.getItem('site_lang');
+
+    if (saved && supportedLanguages.includes(saved)) {
+        return saved;
+    }
+
+    const browserLang = (navigator.language || 'en')
+        .toLowerCase()
+        .split('-')[0];
+
+    if (supportedLanguages.includes(browserLang)) {
+        return browserLang;
+    }
+
+    return 'en';
+}
+
+let currentLang = getInitialLanguage();
+document.documentElement.lang = currentLang;
 
 // Объект, куда запишутся данные из скачанного JSON-файла
 let currentTranslations = {};
@@ -91,6 +109,7 @@ function changeLanguage(langCode) {
     if (!supportedLanguages.includes(langCode)) return;
     currentLang = langCode;
     localStorage.setItem('site_lang', currentLang);
+    document.documentElement.lang = langCode;  // ← ДОБАВИТЬ ЭТУ СТРОКУ
 
     // Просто запускаем загрузку, она сама внутри себя пнёт updateView() и calculate() когда надо
     loadTranslations(currentLang);
