@@ -46,7 +46,7 @@ function buildLangSelect() {
 async function loadTranslations(lang) {
     try {
         // Подтягиваем нужный JSON из структуры /assets/i18n/
-        const response = await fetch(`/assets/i18n/${lang}.json`);
+        const response = await fetch(`assets/i18n/${lang}.json`);
         if (!response.ok) throw new Error(`Не удалось загрузить локализацию: ${lang}`);
 
         currentTranslations = await response.json();
