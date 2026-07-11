@@ -11,15 +11,15 @@ function detectTitleKey() {
 function createNavHTML() {
     return `
         <div class="button-container">
-            <a href="/" class="btn btn--primary">
+            <a href="index.html" class="btn btn--primary">
                 <span class="icon-chip material-icons" aria-hidden="true">home</span>
                 <span data-i18n="btn_home">Главная страница</span>
             </a>
-            <a href="/data/lookups/index.html" class="btn btn--tonal">
+            <a href="data/lookups/index.html" class="btn btn--tonal">
                 <span class="icon-chip material-icons" aria-hidden="true">analytics</span>
                 <span data-i18n="btn_lookups">Характеристики эпох</span>
             </a>
-            <a href="/data/calculator/index.html" class="btn btn--tonal">
+            <a href="data/calculator/index.html" class="btn btn--tonal">
                 <span class="icon-chip material-icons" aria-hidden="true">calculate</span>
                 <span data-i18n="btn_calculator">Калькулятор двигателя</span>
             </a>
