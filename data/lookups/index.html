@@ -111,7 +111,7 @@
                     infoCardContainer.innerHTML += createClassCardHTML(cls);
                 });
 
-                const response = await fetch('basedata.json');
+                const response = await fetch(new URL('basedata.json', window.location.href));
                 jsonData = await response.json();
 
                 buildEpochSelect();
